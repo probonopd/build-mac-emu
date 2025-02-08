@@ -15,6 +15,7 @@ cd BasiliskII/src/Unix
 make -j$(nproc)
 # sudo make install
 sudo checkinstall --pkgname=basiliskii-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
+mount | grep "on /boot/firmware" && sudo cp *.deb /boot/firmware/
 cd -
 
 cd SheepShaver/src/Unix
@@ -22,6 +23,7 @@ cd SheepShaver/src/Unix
 make -j$(nproc)
 # sudo make install
 sudo checkinstall --pkgname=sheepshaver-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
+mount | grep "on /boot/firmware" && sudo cp *.deb /boot/firmware/
 cd -
 
 # NOTE: If this fails to build, run qemu.sh first. Possibly some dependency from there needs to be installed
