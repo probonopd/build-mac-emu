@@ -13,9 +13,11 @@ mkdir -p build
 cd build
 ../configure --prefix=/usr --target-list=m68k-softmmu,ppc-softmmu --enable-sdl --enable-alsa --enable-alsa --disable-oss --enable-opengl --enable-slirp # --static
 make -j$(nproc)
-
-sudo make install # Without this the next step fails
-sudo checkinstall --pkgname=qemu-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
-mount | grep "on /boot/firmware" && sudo cp *.deb /boot/firmware/
+make DESTDIR=app install
+mkdir -p app/usr/lib
+ldd app/usr/bin/*  | grep "=>" | cut -d " " -f 3 | xargs -I {} cp {} app/usr/lib/
+find app/usr/bin/ -type f -exec patchelf --add-rpath '$ORIGIN/../lib' {} \;
+( cd app/ ; zip -r ../qemu.zip * )
+mount | grep "on /boot/firmware" && sudo cp *.zip /boot/firmware/
 
 cd ../../
