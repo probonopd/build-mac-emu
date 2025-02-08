@@ -13,6 +13,7 @@ mkdir -p build
 cd build
 ../configure --prefix=/usr --target-list=m68k-softmmu,ppc-softmmu --enable-sdl --enable-alsa --enable-alsa --disable-oss --enable-opengl --enable-slirp # --static
 make -j$(nproc)
+sudo make install
 make DESTDIR=app install
 strip app/usr/bin/*
 strip subprojects/slirp/libslirp*so* || true
