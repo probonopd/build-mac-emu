@@ -1,0 +1,53 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+   runs-on: ubuntu-22.04-arm
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git qemu-system binfmt-support qemu-user-static xz-utils
+
+      - name: Clone Raspbian tools
+        run: |
+          sudo git clone --depth 1 https://github.com/raspberrypi/tools /opt/rpi-tools
+
+      - name: Download Raspbian image
+        run: |
+          wget -q "http://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2024-11-19/2024-11-19-raspios-bookworm-armhf-lite.img.xz"
+          unxz *.img.xz
+
+      - name: Create Raspbian sysroot
+        run: |
+          export SYSROOT=/opt/rpi-sysroot
+          sudo kpartx -a -v *.img
+          sudo mount -o loop /dev/mapper/loop0p2 /mnt
+          sudo cp -r /mnt $SYSROOT
+          sudo cp /usr/bin/qemu-arm-static $SYSROOT/usr/bin
+          sudo mount --bind /dev $SYSROOT/dev
+          sudo mount --bind /proc $SYSROOT/proc
+          sudo mount --bind /sys $SYSROOT/sys
+          sudo mount -t tmpfs tmpfs $SYSROOT/tmp
+          sudo sed -i 's/^/#/' $SYSROOT/etc/ld.so.preload || true
+
+      - name: Chroot into Raspbian sysroot
+        run: |
+          export SYSROOT=/opt/rpi-sysroot
+          sudo chroot $SYSROOT bash -ex build.sh
+
+      - name: Unmount Raspbian sysroot
+        run: |
+          sudo umount $SYSROOT/tmp
+          sudo umount $SYSROOT/dev
+          sudo umount $SYSROOT/proc
+          sudo umount $SYSROOT/sys
+          sudo umount /mnt
