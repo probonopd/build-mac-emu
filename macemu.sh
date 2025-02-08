@@ -13,13 +13,13 @@ git checkout 6ddff7b
 cd BasiliskII/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
-sudo make install
+# sudo make install
 sudo checkinstall --pkgname=basiliskii-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
 cd -
 
 cd SheepShaver/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
-sudo make install
+# sudo make install
 sudo checkinstall --pkgname=sheepshaver-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
 cd -
