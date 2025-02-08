@@ -18,3 +18,17 @@ Currently broken, any help appreciated
     cd build-mac-emu
     sh -ex run.sh
     ```
+
+## Build on real hardware with overlayroot
+
+`overlayroot` restores the machine to a factory new state upon reboot.
+
+Run this on a newly imaged system to ensure that no traces are left after a reboot; this can be helpful while testing and development.
+
+```
+sudo apt install overlayroot
+reboot # Needed?
+sudo mv /usr/sbin/update-initramfs /usr/sbin/update-initramfs.disabled
+sudo touch /usr/sbin/update-initramfs
+sudo chmod +x /usr/sbin/update-initramfs
+```
