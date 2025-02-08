@@ -16,4 +16,5 @@ Currently broken, any help appreciated
     sudo apt-get -y install git
     git clone https://github.com/probonopd/build-mac-emu
     cd build-mac-emu
-    sh -ex run.sh```
+    sh -ex run.sh
+    ```
