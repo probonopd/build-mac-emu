@@ -38,9 +38,6 @@ jobs:
       - name: Chroot into Raspberry Pi OS sysroot
         run: |
           export SYSROOT=/opt/rpi-sysroot
-          # The original server doesn't seem to understand urlencoded URLs
-          echo "deb [trusted=yes] http://raspbian.mirror.axinja.net/raspbian/ bookworm main contrib non-free rpi" | sudo tee $SYSROOT/etc/apt/sources.list.d/raspi.list
-          sudo chroot $SYSROOT apt-get update
           sudo cp *.sh $SYSROOT
           sudo chroot $SYSROOT bash -ex /macemu.sh
           sudo chroot $SYSROOT bash -ex /qemu.sh
