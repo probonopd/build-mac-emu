@@ -15,11 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git qemu-system binfmt-support qemu-user-static xz-utils
-
-      - name: Clone Raspbian tools
-        run: |
-          sudo git clone --depth 1 https://github.com/raspberrypi/tools /opt/rpi-tools
+          sudo apt-get install -y git binfmt-support xz-utils
 
       - name: Download Raspbian image
         run: |
