@@ -32,7 +32,8 @@ jobs:
           sudo mount --bind /proc $SYSROOT/proc
           sudo mount --bind /sys $SYSROOT/sys
           sudo mount -t tmpfs tmpfs $SYSROOT/tmp
-          sudo cp /etc/resolv.conf $SYSROOT/etc/resolv.conf
+          # sudo cp /etc/resolv.conf $SYSROOT/etc/resolv.conf
+          sudo echo "nameserver 1.1.1.1" > $SYSROOT/etc/resolv.conf
           sudo sed -i 's/^/#/' $SYSROOT/etc/ld.so.preload || true # Needed?
 
       - name: Chroot into Raspberry Pi OS sysroot
