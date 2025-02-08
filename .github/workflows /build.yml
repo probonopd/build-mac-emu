@@ -42,7 +42,9 @@ jobs:
       - name: Chroot into Raspbian sysroot
         run: |
           export SYSROOT=/opt/rpi-sysroot
-          sudo chroot $SYSROOT bash -ex build.sh
+          cp *.sh $SYSROOT
+          sudo chroot $SYSROOT bash -ex /macemu.sh
+          sudo chroot $SYSROOT bash -ex /qemu.sh
 
       - name: Unmount Raspbian sysroot
         run: |
