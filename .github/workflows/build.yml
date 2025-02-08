@@ -14,6 +14,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo modprobe loop
+          sudo modprobe dm-mod
           sudo apt-get update
           sudo apt-get install -y git binfmt-support xz-utils
 
