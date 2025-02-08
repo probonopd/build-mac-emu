@@ -14,8 +14,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo modprobe loop
-          sudo modprobe dm-mod
           sudo apt-get update
           sudo apt-get install -y git binfmt-support xz-utils
 
@@ -28,7 +26,7 @@ jobs:
         run: |
           export SYSROOT=/opt/rpi-sysroot
           sudo kpartx -a -v *.img
-          sudo mount -o loop /dev/mapper/loop0p2 /mnt
+          sudo mount -o loop /dev/mapper/loop3p2 /mnt # Why loop3 here?
           sudo cp -r /mnt $SYSROOT # Why not put unionfs on it and use it directly without copying?
           sudo mount --bind /dev $SYSROOT/dev
           sudo mount --bind /proc $SYSROOT/proc
