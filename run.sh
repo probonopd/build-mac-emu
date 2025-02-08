@@ -3,7 +3,7 @@
 # sh -ex qemu.sh
 sh -ex macemu.sh
 
-# Only contonue if we are runnning on real hardware
+# Only continue if we are runnning on real hardware
 mount | grep "on /boot/firmware" || exit 0
 
 cd ~
