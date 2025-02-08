@@ -13,6 +13,7 @@ git checkout 6ddff7b
 cd BasiliskII/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
+sudo make install
 make DESTDIR=app install
 mkdir -p app/usr/lib
 ldd app/usr/bin/*  | grep "=>" | cut -d " " -f 3 | xargs -I {} cp {} app/usr/lib/
@@ -24,6 +25,7 @@ cd -
 cd SheepShaver/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
+sudo make install
 make DESTDIR=app install
 strip app/usr/bin/*
 mkdir -p app/usr/lib
