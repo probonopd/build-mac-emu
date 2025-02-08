@@ -23,3 +23,5 @@ make -j$(nproc)
 # sudo make install
 sudo checkinstall --pkgname=sheepshaver-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
 cd -
+
+# NOTE: If this fails to build, run qemu.sh first. Possibly some dependency from there needs to be installed
