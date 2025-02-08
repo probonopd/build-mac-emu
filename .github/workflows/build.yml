@@ -39,7 +39,6 @@ jobs:
         run: |
           export SYSROOT=/opt/rpi-sysroot
           sudo cp *.sh $SYSROOT
-          sudo chroot $SYSROOT bash -ex /clusterhack.sh
           sudo chroot $SYSROOT bash -ex /macemu.sh
           sudo chroot $SYSROOT bash -ex /qemu.sh
 
