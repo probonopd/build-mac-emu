@@ -1,10 +1,6 @@
 #!/bin/sh -e -x
 
-# apt-get wants to download
-# http://raspbian.raspberrypi.com/raspbian/pool/main/g/git/git-man2.39.5-0%2bdeb12u1_all.deb
-# but this results in 404 while
-# http://raspbian.raspberrypi.com/raspbian/pool/main/g/git/git-man2.39.5-0+deb12u2_all.deb
-# works. How can I make apt-get download from the latter rather than from the former?
+# For whatever reason, apt wants to download slightly older files than what is on the server...
 
 mkdir -p /opt/deb
 cd /opt/deb
