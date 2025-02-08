@@ -8,7 +8,7 @@
 
 mkdir -p /opt/deb
 cd /opt/deb
-wget -q "http://raspbian.raspberrypi.com/raspbian/pool/main/g/git/git-man2.39.5-0+deb12u2_all.deb"
+wget -q "http://raspbian.raspberrypi.com/raspbian/pool/main/g/git/git-man_2.39.5-0+deb12u2_all.deb"
 wget -q "http://raspbian.raspberrypi.com/raspbian/pool/main/g/git/git_2.39.5-0+deb12u2_armhf.deb"
 wget -q "http://raspbian.raspberrypi.com/raspbian/pool/main/u/util-linux/uuid-dev_2.38.1-5+deb12u3_armhf.deb"
 wget -q "http://raspbian.raspberrypi.com/raspbian/pool/main/u/util-linux/libblkid-dev_2.38.1-5+deb12u3_armhf.deb"
