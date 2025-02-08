@@ -13,7 +13,8 @@ It is recommended to use a Raspberry Pi 5 or Raspberry Pi 500 to speed up the bu
 1. Download [2024-11-19-raspios-bookworm-armhf-lite.img.xz](http://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2024-11-19/2024-11-19-raspios-bookworm-armhf-lite.img.xz)
 2. Write it to a microSD card using the Raspberry Pi Imager. Apply custom settings for username and password so that you can log in over ssh
 3. Create a file `ssh` on the microSD card so you can log in over ssh
-4.  ```
+4. Log into the Raspberry Pi over ssh so that you can copy and paste the following
+5.  ```
     sudo apt-get update
     sudo apt-get -y install git
     git clone https://github.com/probonopd/build-mac-emu
