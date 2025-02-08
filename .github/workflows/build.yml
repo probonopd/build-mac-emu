@@ -39,8 +39,7 @@ jobs:
         run: |
           export SYSROOT=/opt/rpi-sysroot
           # The original server doesn't seem to understand urlencoded URLs
-          echo "deb [signed-by=/usr/share/keyrings/raspbian-archive-keyring.gpg] http://raspbian.mirror.axinja.net/raspbian/ bookworm main contrib non-free rpi" | sudo tee $SYSROOT/etc/apt/sources.list.d/raspi.list
-          wget -qO - http://raspbian.mirror.axinja.net/raspbian.public.key | sudo tee $SYSROOT/usr/share/keyrings/raspbian-archive-keyring.gpg > /dev/null
+          echo "deb [trusted=yes] http://raspbian.mirror.axinja.net/raspbian/ bookworm main contrib non-free rpi" | sudo tee $SYSROOT/etc/apt/sources.list.d/raspi.list
           sudo chroot $SYSROOT apt-get update
           sudo cp *.sh $SYSROOT
           sudo chroot $SYSROOT bash -ex /macemu.sh
