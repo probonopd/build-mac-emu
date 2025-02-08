@@ -13,17 +13,24 @@ git checkout 6ddff7b
 cd BasiliskII/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
-# sudo make install
-sudo checkinstall --pkgname=basiliskii-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
-mount | grep "on /boot/firmware" && sudo cp *.deb /boot/firmware/
+make DESTDIR=app install
+mkdir -p app/usr/lib
+ldd app/usr/bin/*  | grep "=>" | cut -d " " -f 3 | xargs -I {} cp {} app/usr/lib/
+find app/usr/bin/ -type f -exec patchelf --add-rpath '$ORIGIN/../lib' {} \;
+( cd app/ ; zip -r ../BasiliskII.zip * )
+mount | grep "on /boot/firmware" && sudo cp *.zip /boot/firmware/
 cd -
 
 cd SheepShaver/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
 # sudo make install
-sudo checkinstall --pkgname=sheepshaver-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
-mount | grep "on /boot/firmware" && sudo cp *.deb /boot/firmware/
+make DESTDIR=app install
+mkdir -p app/usr/lib
+ldd app/usr/bin/*  | grep "=>" | cut -d " " -f 3 | xargs -I {} cp {} app/usr/lib/
+find app/usr/bin/ -type f -exec patchelf --add-rpath '$ORIGIN/../lib' {} \;
+( cd app/ ; zip -r ../SheepShaver.zip * )
+mount | grep "on /boot/firmware" && sudo cp *.zip /boot/firmware/
 cd -
 
 # NOTE: If this fails to build, run qemu.sh first. Possibly some dependency from there needs to be installed
