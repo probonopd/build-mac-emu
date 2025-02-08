@@ -15,9 +15,11 @@ cd BasiliskII/src/Unix
 make -j$(nproc)
 sudo make install
 sudo checkinstall --pkgname=basiliskii-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
+cd -
 
 cd SheepShaver/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
 sudo make install
 sudo checkinstall --pkgname=sheepshaver-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
+cd -
