@@ -37,7 +37,7 @@ jobs:
       - name: Chroot into Raspberry Pi OS sysroot
         run: |
           export SYSROOT=/opt/rpi-sysroot
-          cp *.sh $SYSROOT
+          sudo cp *.sh $SYSROOT
           sudo chroot $SYSROOT bash -ex /macemu.sh
           sudo chroot $SYSROOT bash -ex /qemu.sh
 
