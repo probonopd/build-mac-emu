@@ -17,12 +17,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y git binfmt-support xz-utils
 
-      - name: Download Raspbian image
+      - name: Download Raspberry Pi OS image
         run: |
           wget -q "http://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2024-11-19/2024-11-19-raspios-bookworm-armhf-lite.img.xz"
           unxz *.img.xz
 
-      - name: Create Raspbian sysroot
+      - name: Create Raspberry Pi OS sysroot
         run: |
           export SYSROOT=/opt/rpi-sysroot
           sudo kpartx -a -v *.img
@@ -34,14 +34,14 @@ jobs:
           sudo mount -t tmpfs tmpfs $SYSROOT/tmp
           # sudo sed -i 's/^/#/' $SYSROOT/etc/ld.so.preload || true
 
-      - name: Chroot into Raspbian sysroot
+      - name: Chroot into Raspberry Pi OS sysroot
         run: |
           export SYSROOT=/opt/rpi-sysroot
           cp *.sh $SYSROOT
           sudo chroot $SYSROOT bash -ex /macemu.sh
           sudo chroot $SYSROOT bash -ex /qemu.sh
 
-      - name: Unmount Raspbian sysroot
+      - name: Unmount Raspberry Pi OS sysroot
         run: |
           sudo umount $SYSROOT/tmp
           sudo umount $SYSROOT/dev
