@@ -4,7 +4,7 @@ cat /etc/os-release # Debian GNU/Linux 12 (bookworm)
 cat /etc/rpi-issue # Raspberry Pi reference 2024-11-19
 
 sudo apt-get -y update
-sudo apt-get -y install git checkinstall libsdl2-dev flex bison libepoxy-dev ninja-build 
+sudo apt-get -y install git libsdl2-dev flex bison libepoxy-dev ninja-build 
 wget "https://github.com/qemu/qemu/archive/refs/tags/v9.2.0.tar.gz"
 tar xf v9.2.0.tar.gz
 cd qemu-9.2.0/
