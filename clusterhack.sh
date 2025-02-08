@@ -19,8 +19,8 @@ wget -q "http://raspbian.raspberrypi.com/raspbian/pool/main/g/glib2.0/libglib2.0
 wget -q "http://raspbian.raspberrypi.com/raspbian/pool/main/s/systemd/libudev-dev_252.33-1~deb12u1+rpi1_armhf.deb"
 dpkg-scanpackages . /dev/null | gzip -9 > Packages.gz
 echo "deb [trusted=yes] file:///opt/deb ./" | sudo tee /etc/apt/sources.list.d/local.list
-sudo tee /etc/apt/preferences.d/local.pref <<EOF
-Package: *
-Pin: origin ""
-Pin-Priority: 1001
-EOF
+# sudo tee /etc/apt/preferences.d/local.pref <<EOF
+# Package: *
+# Pin: origin ""
+# Pin-Priority: 1001
+# EOF
