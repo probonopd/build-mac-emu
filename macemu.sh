@@ -4,7 +4,7 @@ cat /etc/os-release # Debian GNU/Linux 12 (bookworm)
 cat /etc/rpi-issue # Raspberry Pi reference 2024-11-19
 
 sudo apt-get -y update
-sudo apt-get -y install git unzip libgmp-dev libmpfr-dev libsdl2-dev autoconf
+sudo apt-get -y install git unzip libgmp-dev libmpfr-dev libsdl2-dev autoconf checkinstall
 
 git clone https://github.com/kanjitalk755/macemu.git
 cd macemu
