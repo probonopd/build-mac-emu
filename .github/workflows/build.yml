@@ -38,7 +38,8 @@ jobs:
       - name: Chroot into Raspberry Pi OS sysroot
         run: |
           export SYSROOT=/opt/rpi-sysroot
-          cat $SYSROOT/etc/apt/sources.list.d/raspi.list
+          # The original server doesn't seem to understand urlencoded URLs
+          sed -i -e 's|http://archive.raspberrypi.com/debian|http://mirrors.gigenet.com/raspbian/raspbian|g' $SYSROOT/etc/apt/sources.list.d/raspi.list
           sudo chroot $SYSROOT apt-get update
           sudo cp *.sh $SYSROOT
           sudo chroot $SYSROOT bash -ex /macemu.sh
