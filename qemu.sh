@@ -16,5 +16,3 @@ make -j$(nproc)
 
 sudo make install # Without this the next step fails
 sudo checkinstall --pkgname=qemu-custom --pkgversion=$(date +%Y%m%d) --backup=no --install=no --default
-
-sudo cp qemu-custom_*_arm64.deb /boot/
