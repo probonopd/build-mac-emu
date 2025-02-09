@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sh -ex qemu.sh
+# sh -ex qemu.sh
 sh -ex macemu.sh
 
 # Only continue if we are runnning on real hardware
