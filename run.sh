@@ -78,6 +78,8 @@ sudo update-initramfs -u
 # This can be accessed using a terminal program on the Modem port as vt100
 ################################################################################
 
+sudo apt-get -y install socat
+
 sudo tee /etc/systemd/system/socat-vmodem.service <<\EOF
 [Unit]
 Description=Socat Virtual Modem
