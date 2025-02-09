@@ -22,6 +22,11 @@ find app/usr/bin/ -type f -exec patchelf --add-rpath '$ORIGIN/../lib' {} \;
 mount | grep "on /boot/firmware" && sudo cp *.zip /boot/firmware/
 cd -
 
+exit 0
+
+# FIXME: Find out why SheepShaver doesn't build anymore (I had it working before)
+# NOTE: If this fails to build, run qemu.sh first. Possibly some dependency from there needs to be installed?
+
 cd SheepShaver/src/Unix
 ./autogen.sh --prefix=/usr
 make -j$(nproc)
@@ -34,5 +39,3 @@ find app/usr/bin/ -type f -exec patchelf --add-rpath '$ORIGIN/../lib' {} \;
 ( cd app/ ; zip -r ../SheepShaver.zip * )
 mount | grep "on /boot/firmware" && sudo cp *.zip /boot/firmware/
 cd -
-
-# NOTE: If this fails to build, run qemu.sh first. Possibly some dependency from there needs to be installed
