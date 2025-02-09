@@ -10,7 +10,7 @@ echo " quiet fastboot" | sudo tee -a /boot/firmware/cmdline.txt
 
 sudo apt-get -y install mdnsd
 
-for SERVICE in avahi-daemon bluetooth cron polkit ModemManager
+for SERVICE in avahi-daemon bluetooth cron polkit systemd-journald systemd-timesyncd ModemManager
 do
     sudo systemctl stop $SERVICE
     sudo systemctl disable $SERVICE
