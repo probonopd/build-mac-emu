@@ -29,7 +29,7 @@ go build initmac.go
 sudo mv initmac /sbin/initmac
 
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
-sudo tee > /etc/systemd/system/getty@tty1.service.d/override.conf <<\EOF
+sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf <<\EOF
 [Service]
 ExecStart=
 ExecStart=-/sbin/initmac
