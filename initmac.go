@@ -130,10 +130,12 @@ func main() {
         }
 
         // Create the "prefs" file with the desired content.
-        prefsContent := "disk system.img\nframeskip 0\n"
         prefsFile := "prefs"
-        if err := os.WriteFile(prefsFile, []byte(prefsContent), 0644); err != nil {
-                log.Fatalf("Failed to write file %s: %v", prefsFile, err)
+        if _, err := os.Stat(prefsFile); os.IsNotExist(err) {
+                prefsContent := "disk system.img\nframeskip 0\n"
+                if err := os.WriteFile(prefsFile, []byte(prefsContent), 0644); err != nil {
+                        log.Fatalf("Failed to write file %s: %v", prefsFile, err)
+                }
         }
 
         // Execute BasiliskII with the specified configuration.
