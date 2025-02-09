@@ -132,7 +132,7 @@ func main() {
         // Create the "prefs" file with the desired content.
         prefsFile := "prefs"
         if _, err := os.Stat(prefsFile); os.IsNotExist(err) {
-                prefsContent := "disk system.img\nframeskip 0\n"
+                prefsContent := "disk system.img\nframeskip 0\nscreen dga/0/0\nramsize 134217728"
                 if err := os.WriteFile(prefsFile, []byte(prefsContent), 0644); err != nil {
                         log.Fatalf("Failed to write file %s: %v", prefsFile, err)
                 }
