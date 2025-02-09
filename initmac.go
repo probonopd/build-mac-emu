@@ -77,15 +77,11 @@ func main() {
         // Mount proc filesystem (like "mount -t proc proc /proc")
         if err := mountSpecial("proc", "/proc", "proc", "", 0); err != nil {
                 log.Println("Failed to mount proc on /proc: %v", err)
-        } else {
-                log.Println("Mounted proc filesystem successfully on /proc")
         }
 
         // Mount sysfs filesystem (like "mount -t sysfs sysfs /sys")
         if err := mountSpecial("sysfs", "/sys", "sysfs", "", 0); err != nil {
                 log.Println("Failed to mount sysfs on /sys: %v", err)
-        } else {
-                log.Println("Mounted sysfs filesystem successfully on /sys")
         }
 
         // Set the PATH environment variable
@@ -103,7 +99,7 @@ func main() {
                 log.Fatalf("Failed to create directory %s: %v", home, err)
         }
 
-        // Change working directory to HOME as the very first thing.
+        // Change working directory to HOME.
         if err := os.Chdir(home); err != nil {
                 log.Fatalf("Failed to change directory to %s: %v", home, err)
         }
@@ -121,8 +117,6 @@ func main() {
                 if err := downloadFile(romURL, romFile); err != nil {
                         log.Fatalf("Failed to download ROM: %v", err)
                 }
-        } else {
-                fmt.Printf("File %s exists. Skipping download.\n", romFile)
         }
 
         // Download system.img if it does not exist.
@@ -133,8 +127,6 @@ func main() {
                 if err := downloadFile(systemURL, systemImg); err != nil {
                         log.Fatalf("Failed to download system.img: %v", err)
                 }
-        } else {
-                fmt.Printf("File %s exists. Skipping download.\n", systemImg)
         }
 
         // Create the "prefs" file with the desired content.
