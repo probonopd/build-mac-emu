@@ -78,8 +78,8 @@ EOF
 sudo systemctl enable socat-vmodem.service
 sudo systemctl start socat-vmodem.service
 
-# wget https://download.macintoshgarden.org/apps/stuffit_expander_5.5.img
-# wget https://macintoshgarden.org/sites/macintoshgarden.org/files/apps/Black_Night_CQII.sit
+# wget https://download.macintoshgarden.org/apps/stuffit_expander_5.5.img # Mount this through "disk stuffit_expander_5.5.img" in BasiliskII config
+# wget https://download.macintoshgarden.org/apps/Black_Night_1.0.4_f.sit_.hqx
 
 exit 0
 
