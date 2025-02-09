@@ -140,6 +140,7 @@ func main() {
 
         // Execute BasiliskII with the specified configuration.
         cmd := exec.Command("BasiliskII", "--config", prefsFile)
+        cmd.Env = append(os.Environ(), "TERM=vt100")
         // cmd.Stdout = os.Stdout
         // cmd.Stderr = os.Stderr
         cmd.Stdout = nil
