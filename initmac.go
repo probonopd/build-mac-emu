@@ -118,6 +118,26 @@ func main() {
                 }
         }
 
+        // Download StuffIt Expander if not present.
+        stuffitImg := "stuffit_expander_5.5.img"
+        if !fileExists(stuffitImg) {
+                stuffitURL := "https://download.macintoshgarden.org/apps/stuffit_expander_5.5.img"
+                fmt.Printf("File %s does not exist. Downloading from %s\n", stuffitImg, stuffitURL)
+                if err := downloadFile(stuffitURL, stuffitImg); err != nil {
+                        log.Fatalf("Failed to download StuffIt Expander: %v", err)
+                }
+        }
+
+        // Download Black Night if not present.
+        blackNightFile := "Black_Night_1.0.4_f.sit_.hqx"
+        if !fileExists(blackNightFile) {
+                blackNightURL := "https://download.macintoshgarden.org/apps/Black_Night_1.0.4_f.sit_.hqx"
+                fmt.Printf("File %s does not exist. Downloading from %s\n", blackNightFile, blackNightURL)
+                if err := downloadFile(blackNightURL, blackNightFile); err != nil {
+                        log.Fatalf("Failed to download Black Night: %v", err)
+                }
+        }
+
         // Define the prefs file.
         prefsFile := "prefs"
 
@@ -127,6 +147,7 @@ func main() {
         hasFrameskip := false
         hasScreen := false
         hasRamsize := false
+        hasSeriala := false
 
         // If the prefs file exists, read its content.
         if fileExists(prefsFile) {
