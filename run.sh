@@ -43,7 +43,6 @@ Wants=local-fs.target
 [Service]
 ExecStart=-/sbin/initmac
 Type=simple
-NoBlocking=true
 ExecStopPost=/bin/systemctl poweroff
 
 [Install]
