@@ -6,6 +6,8 @@ sh -ex macemu.sh
 # Only continue if we are runnning on real hardware
 mount | grep "on /boot/firmware" || exit 0
 
+echo " quiet" >> /boot/firmware/cmdline.txt
+
 sudo apt-get -y install mdnsd
 
 for SERVICE in avahi-daemon bluetooth 
