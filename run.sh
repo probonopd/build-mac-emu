@@ -14,8 +14,9 @@ sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<\EOF
 [Service]
 ExecStart=
-ExecStart=-/path/to/initmac
+ExecStart=-/sbin/initmac
 Type=idle
+ExecStopPost=/bin/systemctl poweroff
 EOF
 
 sudo systemctl daemon-reload
