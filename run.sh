@@ -72,3 +72,23 @@ EOF
 sudo chmod +x /etc/initramfs-tools/scripts/init-top/disable-cursor
 sudo sed -i -e 's|^modules=|modules=most|g' /etc/initramfs-tools/initramfs.conf
 sudo update-initramfs -u
+
+################################################################################
+# Virtual modem for vt100 terminal
+# This can be accessed using a terminal program on the Modem port as vt100
+################################################################################
+
+sudo tee /etc/systemd/system/socat-vmodem.service <<\EOF
+[Unit]
+Description=Socat Virtual Modem
+
+[Service]
+ExecStart=/usr/bin/socat PTY,echo=0,link=/tmp/vmodem exec:bash,pty,stderr,setsid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl enable socat-vmodem.service
+sudo systemctl start socat-vmodem.service
