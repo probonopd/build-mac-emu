@@ -10,6 +10,10 @@ echo " quiet fastboot" | sudo tee -a /boot/firmware/cmdline.txt
 
 sudo apt-get -y install mdnsd
 
+# NOTE: Disabling NetworkManager BRICKS sshd; how sad is that!
+# Why can't we have a working network without Red Hat anymore?
+# Worst, it draws in dbus...
+
 for SERVICE in avahi-daemon bluetooth cron polkit systemd-journald systemd-timesyncd ModemManager
 do
     sudo systemctl stop $SERVICE
