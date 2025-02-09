@@ -138,9 +138,11 @@ func main() {
 
         // Execute BasiliskII with the specified configuration.
         cmd := exec.Command("BasiliskII", "--config", prefsFile)
-        cmd.Stdout = os.Stdout
-        cmd.Stderr = os.Stderr
-
+        // cmd.Stdout = os.Stdout
+        // cmd.Stderr = os.Stderr
+        cmd.Stdout = nil
+        cmd.Stderr = nil
+        
         fmt.Printf("Executing command: BasiliskII --config %s in directory %s\n", prefsFile, home)
         if err := cmd.Run(); err != nil {
                 log.Fatalf("BasiliskII exited with error: %v", err)
