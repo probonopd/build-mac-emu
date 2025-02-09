@@ -6,7 +6,7 @@ sh -ex macemu.sh
 # Only continue if we are runnning on real hardware
 mount | grep "on /boot/firmware" || exit 0
 
-echo " quiet" | sudo tee -a /boot/firmware/cmdline.txt
+echo " quiet fastboot" | sudo tee -a /boot/firmware/cmdline.txt
 
 sudo apt-get -y install mdnsd
 
