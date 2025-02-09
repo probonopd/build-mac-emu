@@ -92,3 +92,6 @@ EOF
 
 sudo systemctl enable socat-vmodem.service
 sudo systemctl start socat-vmodem.service
+
+# wget https://download.macintoshgarden.org/apps/stuffit_expander_5.5.img
+# wget https://macintoshgarden.org/sites/macintoshgarden.org/files/apps/Black_Night_CQII.sit
