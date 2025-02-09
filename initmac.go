@@ -70,18 +70,18 @@ func main() {
         // Ensure each mount point directory exists.
         for _, dir := range mountPoints {
                 if err := ensureDir(dir, 0755); err != nil {
-                        log.Fatalf("Failed to create directory %s: %v", dir, err)
+                        // log.Fatalf("Failed to create directory %s: %v", dir, err)
                 }
         }
 
         // Mount proc filesystem (like "mount -t proc proc /proc")
         if err := mountSpecial("proc", "/proc", "proc", "", 0); err != nil {
-                log.Println("Failed to mount proc on /proc: %v", err)
+                // log.Println("Failed to mount proc on /proc: %v", err)
         }
 
         // Mount sysfs filesystem (like "mount -t sysfs sysfs /sys")
         if err := mountSpecial("sysfs", "/sys", "sysfs", "", 0); err != nil {
-                log.Println("Failed to mount sysfs on /sys: %v", err)
+                // log.Println("Failed to mount sysfs on /sys: %v", err)
         }
 
         // Set the PATH environment variable
