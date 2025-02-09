@@ -6,6 +6,18 @@ sh -ex macemu.sh
 # Only continue if we are runnning on real hardware
 mount | grep "on /boot/firmware" || exit 0
 
+sudo apt-get -y install mdnsd
+
+for SERVICE in avahi-daemon bluetooth 
+do
+    sudo systemctl stop $SERVICE
+    sudo systemctl disable $SERVICE
+    # sudo systemctl mask $SERVICE
+done
+
+# See running services with
+# systemctl list-units --type=service --state=running --no-pager --no-legend | awk '{printf "%s ", $1}'
+
 ################################################################################
 # Start script as a static binary
 ################################################################################
