@@ -28,5 +28,5 @@ cd -
 # sudo apt install 7zip
 # 7zr x c39ac2af-c381-c2bf-1b25-11c3a4e284a2
 # previous ./Nextstep\ 1.0\ HD\ Image\ With\ Previous/NS10_1GB.dd
-# Only a black screen with a cursor, why?
+# Only the SDL2 cursor appears but nothing else, why?
 # How to specify ROM and disk?
