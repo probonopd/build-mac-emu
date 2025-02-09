@@ -32,17 +32,30 @@ sudo apt-get -y install golang
 go build initmac.go
 sudo mv initmac /sbin/initmac
 
-sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
-sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf <<\EOF
+sudo tee /etc/systemd/system/initmac.service <<\EOF
+[Unit]
+Description=Run initmac as early as possible
+DefaultDependencies=no
+Before=sysinit.target
+After=local-fs.target
+Wants=local-fs.target
+
 [Service]
-ExecStart=
 ExecStart=-/sbin/initmac
-Type=idle
+Type=simple
+NoBlocking=true
 ExecStopPost=/bin/systemctl poweroff
+
+[Install]
+WantedBy=default.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl restart getty@tty1
+sudo systemctl enable initmac.service
+sudo systemctl start initmac.service
+
+sudo systemctl disable getty@tty1
+sudo systemctl stop getty@tty1
 
 ################################################################################
 # Silence blinking cursor
