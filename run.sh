@@ -6,7 +6,7 @@ sh -ex macemu.sh
 # Only continue if we are runnning on real hardware
 mount | grep "on /boot/firmware" || exit 0
 
-echo " quiet" >> /boot/firmware/cmdline.txt
+echo " quiet" | sudo tee -a /boot/firmware/cmdline.txt
 
 sudo apt-get -y install mdnsd
 
@@ -29,7 +29,7 @@ go build initmac.go
 sudo mv initmac /sbin/initmac
 
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
-sudo cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<\EOF
+sudo tee > /etc/systemd/system/getty@tty1.service.d/override.conf <<\EOF
 [Service]
 ExecStart=
 ExecStart=-/sbin/initmac
