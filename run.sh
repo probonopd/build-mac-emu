@@ -59,6 +59,7 @@ sudo systemctl stop getty@tty1
 
 ################################################################################
 # Silence blinking cursor
+# NOTE: This may no longer be neccessary due to how we set up systemd
 ################################################################################
 
 sudo tee /etc/initramfs-tools/scripts/init-top/disable-cursor <<\EOF
