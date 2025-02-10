@@ -37,6 +37,7 @@ jobs:
           sudo sed -i 's/^/#/' $SYSROOT/etc/ld.so.preload || true # Needed?
           echo 'Acquire::Check-Valid-Until "false";' | sudo tee $SYSROOT/etc/apt/apt.conf.d/99disable-release-check
           sudo chroot $SYSROOT apt clean
+          sudo chroot $SYSROOT apt-get update --allow-releaseinfo-change
 
       - name: Chroot into Raspberry Pi OS sysroot
         run: |
