@@ -35,7 +35,8 @@ jobs:
           # sudo cp /etc/resolv.conf $SYSROOT/etc/resolv.conf
           echo "nameserver 1.1.1.1" | sudo tee $SYSROOT/etc/resolv.conf
           sudo sed -i 's/^/#/' $SYSROOT/etc/ld.so.preload || true # Needed?
-          echo 'Acquire::Check-Valid-Until "false";' | sudo tee $SYSROOT/etc/apt/apt.conf.d/99disable-release-check
+          sudo sed -i -e 's|deb.debian.org|ftp.debian.org|g'  $SYSROOT/etc/apt/sources.list
+          # echo 'Acquire::Check-Valid-Until "false";' | sudo tee $SYSROOT/etc/apt/apt.conf.d/99disable-release-check
           sudo chroot $SYSROOT apt clean
           sudo chroot $SYSROOT apt-get update --allow-releaseinfo-change
 
